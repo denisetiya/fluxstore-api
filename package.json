@@ -12,10 +12,7 @@
 	"license": "ISC",
 	"description": "backend app for project",
 	"engines": {
-		"node": ">=16.0.0",
-		"npm": ">=7.0.0",
-		"yarn": ">=1.22.0",
-		"pnpm": ">=7.0.0"
+		"node": "20.x"
 	},
 	"dependencies": {
 		"@prisma/client": "5.12.1",
