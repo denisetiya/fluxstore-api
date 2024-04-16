@@ -1,0 +1,32 @@
+// create db fluxstore
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+// add user table part
+
+model User  {
+  id String @id @default(cuid())
+  name String
+  email String
+  password String
+  address String?
+  profilePic String?
+}
+
+
+model product {
+  id String @id @default(cuid())
+  nameProduct String
+  priceProduct String
+  descProduct String?
+  stokProduct String
+  starProduct String?
+  color String?
+}

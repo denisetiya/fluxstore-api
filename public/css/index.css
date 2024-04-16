@@ -1,5 +1,17 @@
+*{
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+
+}
+
 .title {
   font-weight: bold;
   text-align: center;
-  font-size : 50px
+  font-size : 50px;
+}
+
+.highlight {
+  color: rgb(41, 115, 184);
 }
