@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { createUser } = require("../../repository/users.js");
+const { createUser,findUserByEmail } = require("../../repository/users.js");
 
 
 async function registerUser(userInfo) {
@@ -9,6 +9,14 @@ async function registerUser(userInfo) {
 
     throw new Error("Register failed, confirm password not match");
 
+  }
+
+  const validate = await findUserByEmail(userInfo.email);
+
+  if (validate) {
+
+    throw new Error("Email already registered");
+    
   }
 
   const hashedPassword = await bcrypt.hash(userInfo.password, 10);
