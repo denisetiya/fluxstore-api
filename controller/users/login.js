@@ -3,6 +3,7 @@ const login = express();
 const { loginUser } = require("../../services/users/login");
 const response = require("../../utils/response");
 
+
 login.post("/", async (req, res) => {
   
   const userInfo = req.body;
@@ -21,9 +22,12 @@ login.post("/", async (req, res) => {
 
   } catch (error) {
 
-    return response(400, error.message, res, null);
+    return response(400, error.message, res);
 
   }
 });
+
+
+
 
 module.exports = login;

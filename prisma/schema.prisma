@@ -14,19 +14,19 @@ datasource db {
 model User  {
   id String @id @default(cuid())
   name String
-  email String
+  email String @unique
   password String
   address String?
   profilePic String?
 }
 
 
-model product {
-  id String @id @default(cuid())
-  nameProduct String
-  priceProduct String
-  descProduct String?
-  stokProduct String
-  starProduct String?
-  color String?
-}
+// model product {
+//   id String @id @default(cuid())
+//   nameProduct String
+//   priceProduct String
+//   descProduct String?
+//   stokProduct String
+//   starProduct String?
+//   color String?
+// }

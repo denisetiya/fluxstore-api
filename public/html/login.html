@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1>Welcome to the API</h1>
+
+  <form id="login-form">
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button type="submit">Login</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('login-form');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const message = document.getElementById('message');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        fetch('http://localhost:4000/user/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.status_code == 200) {
+            message.textContent = 'Login success';
+          } else {
+            console.log(data.status_code);
+            message.textContent = 'Login failed';
+          }
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+          message.textContent = 'There was a problem with the login operation';
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

@@ -7,7 +7,7 @@ const response = require("../utils/response");
 auth.use(cookieParser());
 
 auth.use((req, res, next) => {
-  if (req.path === "/user/login" || req.path === "/user/register" || req.path === "/api-docs" || req.path === "/user/forgetPassword") {
+  if (req.path === "/user/login" || req.path === "/auth/google" || req.path === "/api-login" || req.path === "/user/forgetPassword" || req.path === "/auth/google/callback") {
     return next();
   }
   const token = req.cookies ? req.cookies.token : null;

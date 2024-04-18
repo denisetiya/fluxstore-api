@@ -24,6 +24,10 @@ app.get("/api-docs", (req, res) => {
   res.sendFile(__dirname + "/public/html/apiStarted.html");
 })
 
+app.get("/api-login", (req, res) => {
+  res.sendFile(__dirname + "/public/html/login.html");
+})
+
 app.get("*", (req, res) => {
   response(404, "Route not found", res, null)
 })
