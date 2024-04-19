@@ -5,8 +5,8 @@ const dotenv = require("dotenv");
 
 
 
-const response = require("./utils/response");
-const router = require("./routes/");
+const response = require("./utils/response.js");
+const router = require("./routes/index.js");
 
 dotenv.config();
 

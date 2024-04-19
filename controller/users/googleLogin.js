@@ -1,6 +1,6 @@
 const express = require("express");
 const googleLogin = express();
-const {authorizeUrl, oauth2Client, callback} = require("../../services/users/s-googleauth");
+const {authorizeUrl, oauth2Client, callback} = require("../../services/users/s-googleauth.js");
 const response = require("../../utils/response.js");
 
 

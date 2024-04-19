@@ -2,7 +2,7 @@ const express = require("express");
 const auth = express();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const response = require("../utils/response");
+const response = require("../utils/response.js");
 
 auth.use(cookieParser());
 

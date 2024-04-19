@@ -1,6 +1,6 @@
 const express = require("express");
 const register = express();
-const { registerUser } = require("../../services/users/s-register");
+const { registerUser } = require("../../services/users/s-register.js");
 const response = require("../../utils/response.js");
 
 register.post("/", async (req, res) => {

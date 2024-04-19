@@ -1,4 +1,4 @@
-const { createProduct } = require("../../repository/r-product");
+const { createProduct } = require("../../repository/r-product.js");
 
 const addProductService = async (data) => {
 

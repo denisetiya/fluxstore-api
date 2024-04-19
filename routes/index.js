@@ -2,15 +2,15 @@ const express = require("express");
 const router = express();
 const cors = require("cors");
 
-const auth = require("../middleware/auth");
-const login = require("../controller/users/login");
-const register = require("../controller/users/register");
-const {verificationCodeRouter, verificationEmailRouter,forgetPasswordRouter}= require("../controller/users/forgetPassword");
-const googleLogin = require("../controller/users/googleLogin");
-const addProductRoute = require("../controller/products/addProduct");
-const showProductRoute = require("../controller/products/showProduct");
-const {deleteProductRoute, deleteProductDetailRoute} = require("../controller/products/deleteProduct");
-const updateProductRoute = require("../controller/products/updateProduct");
+const auth = require("../middleware/auth.js");
+const login = require("../controller/users/login.js");
+const register = require("../controller/users/register.js");
+const {verificationCodeRouter, verificationEmailRouter,forgetPasswordRouter}= require("../controller/users/forgetPassword.js");
+const googleLogin = require("../controller/users/googleLogin.js");
+const addProductRoute = require("../controller/products/addProduct.js");
+const showProductRoute = require("../controller/products/showProduct.js");
+const {deleteProductRoute, deleteProductDetailRoute} = require("../controller/products/deleteProduct.js");
+const updateProductRoute = require("../controller/products/updateProduct.js");
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));

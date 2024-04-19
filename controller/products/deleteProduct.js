@@ -1,6 +1,6 @@
 const express = require("express");
-const response = require("../../utils/response");
-const { deleteProductService, deleteDetailProductService} = require("../../services/products/s-deleteProduct");
+const response = require("../../utils/response.js");
+const { deleteProductService, deleteDetailProductService} = require("../../services/products/s-deleteProduct.js");
 const deleteProductRoute = express();
 const deleteProductDetailRoute = express();
 

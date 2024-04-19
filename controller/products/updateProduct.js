@@ -1,6 +1,6 @@
 const express = require("express");
-const response = require("../../utils/response");
-const updateProductService = require("../../services/products/s-updateProduct");
+const response = require("../../utils/response.js");
+const updateProductService = require("../../services/products/s-updateProduct.js");
 const updateProduct = express();
 
 

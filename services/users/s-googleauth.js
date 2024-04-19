@@ -1,5 +1,5 @@
 const {google} = require("googleapis");
-const {findUserByEmail, createUser} = require("../../repository/r-users");
+const {findUserByEmail, createUser} = require("../../repository/r-users.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
