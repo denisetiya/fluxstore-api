@@ -1,5 +1,14 @@
 {
   "version": 2,
+  "alias": {
+		"@service": "./services/",
+		"@utils": "./utils/",
+		"@controller": "./controller",
+		"@model": "./models/",
+		"@routes": "./routes/",
+		"@middleware": "./middleware/",
+		"@repository": "./repository/"
+  },
   "builds": [
     {
       "src": "./main.js",
