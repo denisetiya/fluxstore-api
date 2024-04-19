@@ -1,4 +1,4 @@
-const { deleteProduct, deleteDetailProduct } = require("@repository/r-product");
+const { deleteProduct, deleteDetailProduct } = require("../../repository/r-product");
 
 const deleteProductService = async (id) => {
 

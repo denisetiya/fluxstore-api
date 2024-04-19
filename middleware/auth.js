@@ -2,12 +2,12 @@ const express = require("express");
 const auth = express();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const response = require("@utils/response");
+const response = require("../utils/response");
 
 auth.use(cookieParser());
 
 auth.use((req, res, next) => {
-  if (req.path === "/user/login" || req.path === "/auth/google" || req.path === "/api-login" || req.path === "/user/forgetPassword" || req.path === "/auth/google/callback") {
+  if (req.path === "/user/login" || req.path === "/auth/google" || req.path === "/api-login" || req.path === "/user/forgetPassword" || req.path === "/auth/google/callback" || req.path === "/user/register") {
     return next();
   }
   const token = req.cookies ? req.cookies.token : null;

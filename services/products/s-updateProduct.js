@@ -1,4 +1,4 @@
-const { updateProduct } = require("@repository/r-product");
+const { updateProduct } = require("../../repository/r-product");
 
 const updateProductService = async (id, data) => {
 

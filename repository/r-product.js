@@ -1,4 +1,4 @@
-const prisma = require("@utils/prisma.js")
+const prisma = require("../utils/prisma.js")
 
 const getAllProduct = async () => {
 

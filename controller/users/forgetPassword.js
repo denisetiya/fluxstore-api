@@ -1,9 +1,9 @@
 const express = require("express");
 
-const { forgetPasswordUser, validateUser} = require("@service/users/s-forgetPassword");
-const response = require("@utils/response");
-const generateRandomNumbers = require("@utils/randomInt");
-const mailer = require("@utils/mailer");
+const { forgetPasswordUser, validateUser} = require("../../services/users/s-forgetPassword");
+const response = require("../../utils/response");
+const generateRandomNumbers = require("../../utils/randomInt");
+const mailer = require("../../utils/mailer");
 
 const verificationEmailRouter = express.Router();
 const verificationCodeRouter = express.Router();

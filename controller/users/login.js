@@ -1,7 +1,7 @@
 const express = require("express");
 const login = express();
-const { loginUser } = require("@service/users/s-login");
-const response = require("@utils/response");
+const { loginUser } = require("../../services/users/s-login");
+const response = require("../../utils/response");
 
 
 login.post("/", async (req, res) => {

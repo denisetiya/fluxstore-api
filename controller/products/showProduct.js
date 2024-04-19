@@ -1,6 +1,6 @@
-const showProductService = require("@service/products/s-showProduct");
+const showProductService = require("../../services/products/s-showProduct");
 const express = require("express");
-const response = require("@utils/response");
+const response = require("../../utils/response");
 const showProduct = express();
 
 showProduct.get("/", async (req, res) => {

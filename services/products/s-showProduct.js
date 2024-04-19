@@ -1,4 +1,4 @@
-const { getAllProduct, getProductById } = require("@repository/r-product.js")
+const { getAllProduct, getProductById } = require("../../repository/r-product.js")
 
 const showProductService = async (id) => {
 

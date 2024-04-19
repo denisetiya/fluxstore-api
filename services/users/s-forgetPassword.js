@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const { findUserByEmail, updatePasswordUser } = require("@repository/r-users.js");
+const { findUserByEmail, updatePasswordUser } = require("../../repository/r-users.js");
 
 
 async function validateUser(email) {
