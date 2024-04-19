@@ -4,8 +4,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 require('module-alias/register');
 
-const response = require("@utils/response");
-const router = require("@routes/");
+const response = require("./utils/response");
+const router = require("./routes/");
 
 dotenv.config();
 
