@@ -7,11 +7,180 @@
   <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-  <div class="title">API Quick Start Guide</div>
-  <h3>
-    Steps to run the API properly:
-  </h3>
-  <li></li>
+
+  <header>
+    <h1>API Routing Guide</h1>
+  </header>
   
+  <section class="api-section">
+    <h2>Login API</h2>
+    <p><strong>Endpoint:</strong> /api-login</p>
+    <p><strong>Method:</strong> GET</p>
+  </section>
+  
+  <section class="api-section">
+    <h2>API Documentation</h2>
+    <p><strong>Endpoint:</strong> /api-docs</p>
+    <p><strong>Method:</strong> GET</p>
+  </section>
+  
+  <section class="api-section">
+    <h2>Register User</h2>
+    <p><strong>Endpoint:</strong> /user/register</p>
+    <p><strong>Required Fields:</strong> name, email, password, confirmPassword</p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Exp body JSON:</strong> </p>
+    <pre>
+      <code>
+        {
+          "email": "admin1@gmail.com",
+          "password": "qwerty",
+          "name": "admin1",
+          "confirmPassword": "qwerty"
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="api-section">
+    <h2>Login User</h2>
+    <p><strong>Endpoint:</strong> /user/login</p>
+    <p><strong>Required Fields:</strong> email, password</p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Exp body JSON:</strong> </p>
+    <pre>
+      <code>
+        {
+          "email": "admin1@gmail.com",
+          "password": "qwerty"
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="api-section">
+    <h2>Forget Password</h2>
+    <p><strong>Method:</strong> POST</p>
+    <p>Step Route :</p>
+    <h4>Verify Email</h4>
+    <p><strong>Required Fields:</strong> email</p>
+    <p><strong>Endpoint:</strong> /user/forgetPassword</p>
+    <h4>Verify Code</h4>
+    <p><strong>Required Fields:</strong> email, verifyCode</p>
+    <p><strong>Endpoint:</strong> /user/verifyCode</p>
+    <h4>New Password</h4>
+    <p><strong>Required Fields:</strong> email, newPassword</p>
+    <p><strong>Endpoint:</strong> /user/forgetPassword</p>
+  </section>
+
+  <section class="api-section">
+    <h2>Product Route</h2>
+    <hr>
+    <h4>Add Product</h4>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>required Fields:</strong> nameProduct, priceProduct, descProduct(optional), starProduct(optional), categoryProduct, gender(optional), rekomendedProduct(only true,  default false), detail : stockProduct, colorProduct, pictureProduct </p>
+    <p><strong>Endpoint:</strong> /product/add</p>
+    <p><strong>Example body JSON:</strong></p>
+    <pre>
+      <code>
+        {
+          "nameProduct" : "tes3234",
+          "priceProduct" : "40000",
+          "descProduct" : "murah meriah",
+          "starProduct" : "5",
+          "categoryProduct" : "beju",
+          "gender" : "female",
+          "rekomendedProduct": true,
+          "detail" :[ {
+              "stock": "30",
+              "color": "black",
+              "picture" : "www.googlr.com" 
+          },{
+              "stock": "10",
+              "color": "blue",
+              "picture" : "www.googlrad.com" 
+          }
+          ]
+        }
+      </code>
+    </pre>
+    <br>
+
+    <hr>
+    <h4>Show All Product</h4>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>Endpoint:</strong> /product/show</p>
+
+    <hr>
+    <h4>Show Single Product</h4>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>Endpoint:</strong> /product/show/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/show/123131kaljdakadj</p>
+
+    <hr>
+    <h4>Delete Product</h4>
+    <p><strong>Method:</strong> DELETE</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>Endpoint:</strong> /product/delete/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/delete/123131kaljdakadj</p>
+
+    <hr>
+    <h4>Delete Detail Product</h4>
+    <p><strong>Method:</strong> DELETE</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>Endpoint:</strong> /product/deleteDetail/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/deleteDetail/123131kaljdakadj</p>
+
+
+    <hr>
+    <h4>Update Product</h4>
+    <p><strong>Method:</strong> PUT</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>required Fields body:</strong> nameProduct, priceProduct, descProduct(optional), starProduct(optional), categoryProduct, gender(optional), rekomendedProduct(only true,  default false)</p>
+    <p><strong>Endpoint:</strong> /product/update/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/updateDetail/123131kaljdakadj</p>
+    <p><strong>Example body JSON:</strong></p>
+    <pre>
+      <code>
+        {
+          "nameProduct": "iphone 12",
+          "priceProduct": "25000000",
+          "starProduct": "4",
+          "categoryProduct": "electronic",
+          "gender": "uni",
+          "rekomendedProduct": true
+        }
+      </code>
+    </pre>
+
+    <hr>
+    <h4>Update Detail Product</h4>
+    <p><strong>Method:</strong> PUT</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>required Fields body:</strong> id(id detail product), stockProduct, colorProduct, pictureProduct</p>
+    <p><strong>Endpoint:</strong> /product/updateDetail/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/updateDetail/123131kaljdakadj</p>
+    <p><strong>Example body JSON:</strong></p>
+    <pre>
+      <code>
+        {
+          "nameProduct": "product 2",
+          "productDetail": [
+              {
+                  "id": "clv6nj3q400021sqm1wbgg7h5",
+                  "stockProduct": "15"
+              },
+              {
+                  "id": "clv6nj3rz00041sqmdvhib823",
+                  "stockProduct": "5"
+              }
+          ]
+      }
+      </code>
+    </pre>
+
+  </section>
+
 </body>
 </html>

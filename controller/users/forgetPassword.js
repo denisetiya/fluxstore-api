@@ -1,22 +1,63 @@
 const express = require("express");
-const forgetPassword = express();
-const { forgetPasswordUser, validateUser } = require("../../services/users/forgetPassword");
-const response = require("../../utils/response");
 
-forgetPassword.put("/", async (req, res) => {
-  
-  const { email, verifyCode, newPassword } = req.body;
+const { forgetPasswordUser, validateUser} = require("@service/users/s-forgetPassword");
+const response = require("@utils/response");
+const generateRandomNumbers = require("@utils/randomInt");
+const mailer = require("@utils/mailer");
 
+const verificationEmailRouter = express.Router();
+const verificationCodeRouter = express.Router();
+const forgetPasswordRouter = express.Router();
+
+
+verificationEmailRouter.post("/", async (req, res) => {
+  const {email} = req.body;
   try {
     
     const user = await validateUser(email);
-    if (user) {
 
-      const result = await forgetPasswordUser(user, verifyCode, newPassword);
-  
-      return response(200, "Update password success", res, result);
+    if (!user) {
+
+      return response(400, "Email not Found", res, null);
 
     }
+    
+    const  verifyCode = generateRandomNumbers();
+
+    res.cookie('verifyCode', verifyCode, {
+      httpOnly: true,
+      secure: true,
+      maxAge: 10 * 60 * 1000
+    })
+
+    const result = await mailer(user, verifyCode);
+
+    if(result) {
+      return response(200, "Email verified", res);  
+    }
+
+
+  } catch (error) {
+
+    return response(400, error.message, res, null);
+    
+  }
+})
+
+verificationCodeRouter.post("/", async (req, res) => {
+  
+  const {code} = req.body;
+  const verifyCode = req.cookies.verifyCode;
+
+  try {
+
+    if (code !== verifyCode) {
+
+      throw new Error("Invalid code");
+
+    }
+
+    return response(200, "Code verified", res);
 
   } catch (error) {
     
@@ -24,6 +65,38 @@ forgetPassword.put("/", async (req, res) => {
 
   }
 
+  
 })
 
-module.exports = forgetPassword
+forgetPasswordRouter.put("/", async (req, res) => {
+  
+  const {email, newPassword} = req.body;
+
+  try {
+    
+
+      const result = await forgetPasswordUser(email, newPassword);
+
+      if (!result) {
+
+        throw new Error("Failed to update password");
+
+      }
+  
+      return response(200, "Update password success", res, result);
+
+    } catch (error) {
+    
+    return response(400, error.message, res, null);
+
+  }
+
+})
+
+
+
+module.exports = {
+  verificationEmailRouter,
+  verificationCodeRouter,
+  forgetPasswordRouter
+}

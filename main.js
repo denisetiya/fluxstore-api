@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
-const response = require("./utils/response.js");
+require('module-alias/register');
 
-
-const router = require("./routes/");
+const response = require("@utils/response");
+const router = require("@routes/");
 
 dotenv.config();
 

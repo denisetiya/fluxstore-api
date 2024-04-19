@@ -17,16 +17,39 @@ model User  {
   email String @unique
   password String
   address String?
+  phoneNumber String?
   profilePic String?
+  superUser Boolean @default(false)
+  alamat Alamat?
 }
 
+model Alamat {
+  idUser String @id @unique 
+  provisi String
+  kabupaten String
+  kecamatan String
+  kodepos String
+  detail String
+  user User @relation(fields: [idUser], references: [id])
+}
 
-// model product {
-//   id String @id @default(cuid())
-//   nameProduct String
-//   priceProduct String
-//   descProduct String?
-//   stokProduct String
-//   starProduct String?
-//   color String?
-// }
+model product {
+  id String @id @default(cuid())
+  nameProduct String
+  priceProduct String
+  descProduct String?
+  starProduct String?
+  categoryProduct String
+  gender String?
+  productDetail productDetail[]
+  rekomendedProduct Boolean @default(false)
+}
+
+model productDetail {
+  id String @id @default(cuid())
+  idProduct String 
+  stockProduct String
+  colorProduct String
+  pictureProduct String
+  product product @relation(fields: [idProduct], references: [id])
+}

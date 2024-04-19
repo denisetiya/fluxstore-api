@@ -4,20 +4,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Login Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    #login-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"],
+    input[type="password"],
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #141516;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #383e46;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 15px;
+      color: #ff0000;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>Welcome to the API</h1>
+  <div class="container">
+    <h1>Welcome to the API</h1>
 
-  <form id="login-form">
-    <input type="text" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button type="submit">Login</button>
-  </form>
+    <form id="login-form">
+      <input type="text" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button type="submit">Login</button>
+    </form>
 
-  <p id="message"></p>
+    <p id="message"></p>
+  
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -48,6 +100,7 @@
         .then(data => {
           if (data.status_code == 200) {
             message.textContent = 'Login success';
+            window.location.href = '/api-docs';
           } else {
             console.log(data.status_code);
             message.textContent = 'Login failed';
