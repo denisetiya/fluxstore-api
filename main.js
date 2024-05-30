@@ -19,7 +19,7 @@ app.use(
 
 
 app.use(express.static("public"));
-// app.use("/", router);
+app.use("/", router);
 
 app.get('/' , (req, res) => {
   res.json({message: 'welcome to the api'})
