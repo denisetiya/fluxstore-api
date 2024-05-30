@@ -18,7 +18,7 @@ router.use(
   cors(//{ origin: "http://localhost:3000" }
 ));
 
-router.use("/", auth);
+// router.use("/", auth);
 
 // users route
 router.use("/user/login", login);
