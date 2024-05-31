@@ -11,6 +11,7 @@ const addProductRoute = require("../controller/products/addProduct.js");
 const showProductRoute = require("../controller/products/showProduct.js");
 const {deleteProductRoute, deleteProductDetailRoute} = require("../controller/products/deleteProduct.js");
 const updateProductRoute = require("../controller/products/updateProduct.js");
+const { sortProductCategory, sortSubCategories, sortProducts } = require('../controller/products/sortProduct.js') 
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
@@ -36,6 +37,9 @@ router.use("/product/show", showProductRoute);
 router.use("/product/delete", deleteProductRoute);
 router.use("/product/deleteDetail", deleteProductDetailRoute);
 router.use("/product/update", updateProductRoute);
+router.use("/product/sortProduct", sortProducts);
+router.use("/product/sortCategory", sortProductCategory);
+router.use("/product/sortSubCategory", sortSubCategories);
 
 
 module.exports = router
