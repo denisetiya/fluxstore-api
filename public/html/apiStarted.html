@@ -5,54 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>API Documentation</title>
   <link rel="stylesheet" href="../css/index.css">
-  <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        background-color: #f4f4f4;
-      }
-      
-      header {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 10px 0;
-      }
-      
-      h1 {
-        margin: 0;
-      }
-      
-      .api-section {
-        background-color: #fff;
-        border-radius: 5px;
-        margin-top: 20px;
-        padding: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      
-      h2 {
-        color: #333;
-      }
-      
-      pre {
-        background-color: #f9f9f9;
-        padding: 10px;
-        border-radius: 5px;
-        overflow-x: auto;
-      }
-      
-      code {
-        font-family: 'Courier New', monospace;
-        font-size: 14px;
-      }
-      
-      strong {
-        color: #666;
-      }
+</head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.api-section {
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+}
+
+pre {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+strong {
+  color: #666;
+}
 
 </style>
-</head>
 <body>
 
   <header>
@@ -68,12 +68,6 @@
   <section class="api-section">
     <h2>API Documentation</h2>
     <p><strong>Endpoint:</strong> /api-docs</p>
-    <p><strong>Method:</strong> GET</p>
-  </section>
-
-  <section class="api-section">
-    <h2>Goole Login</h2>
-    <p><strong>Endpoint:</strong> /auth/google</p>
     <p><strong>Method:</strong> GET</p>
   </section>
   
@@ -117,7 +111,7 @@
     <p>Step Route :</p>
     <h4>Verify Email</h4>
     <p><strong>Required Fields:</strong> email</p>
-    <p><strong>Endpoint:</strong> /user/verifyEmail</p>
+    <p><strong>Endpoint:</strong> /user/forgetPassword</p>
     <h4>Verify Code</h4>
     <p><strong>Required Fields:</strong> email, verifyCode</p>
     <p><strong>Endpoint:</strong> /user/verifyCode</p>
@@ -137,32 +131,95 @@
     <pre>
       <code>
         {
-          "nameProduct" : "tes3234",
-          "priceProduct" : "40000",
-          "descProduct" : "murah meriah",
-          "starProduct" : "5",
-          "categoryProduct" : "beju",
-          "gender" : "female",
-          "rekomendedProduct": true,
-          "detail" :[ {
-              "stock": "30",
-              "color": "black",
-              "picture" : "www.googlr.com" 
-          },{
-              "stock": "10",
+          "nameProduct": "Hanes Women's Perfect-T Short ",
+          "priceProduct": 19.99,
+          "descProduct": "QUALITY FABRIC - Hanes Perfect-T long-sleeve T-shirt is crafted from lightweight",
+          "starProduct": 4.2,
+          "discountProduct" : 10.2,
+          "idSubCategory" : "107",
+          "gender": "female",
+          "recommendedProduct": true,
+          "detail": [
+            {
+            
+              "color": "green",
+              "picture": "https://m.media-amazon.com/images/I/817XXDXzuGL._AC_SY550_.jpg"
+            },    {
+           
+              "color": "pink",
+              "picture": "https://m.media-amazon.com/images/I/517Bxv24wOL._AC_SX466_.jpg"
+            },    {
+           
+              "color": "gray",
+              "picture": "https://m.media-amazon.com/images/I/813X6oCL-ML._AC_SX569_.jpg"
+            },    {
+           
               "color": "blue",
-              "picture" : "www.googlrad.com" 
-          }
+              "picture": "https://m.media-amazon.com/images/I/61iwYEV-XWL._AC_SX466_.jpg"
+            }
+            
+          ],
+          "sizes" : [
+           {
+                "stock": 143,
+                "size" : "M"
+            },    {
+                "stock": 173,
+                "size" : "L"
+            },    {
+                "stock": 123,
+                "size" : "XL"
+            }
           ]
         }
+        
       </code>
     </pre>
     <br>
 
-    <hr>
-    <h4>Show All Product</h4>
-    <p><strong>Method:</strong> GET</p>
-    <p><strong>Endpoint:</strong> /product/show</p>
+    <section class="api-section">
+      <h2>Sort Product by Category</h2>
+      <p><strong>Endpoint:</strong> GET /sortProductCategory</p>
+      <p><strong>Parameters:</strong></p>
+      <ul>
+        <li>id (optional): ID kategori.</li>
+        <li>nameCategory (optional): Nama kategori.</li>
+      </ul>
+      <p><strong>Deskripsi:</strong> Mendapatkan daftar produk yang termasuk dalam kategori tertentu, jika tanpa parameter maka akan mengambil semua data.</p>
+    </section>
+    
+    <section class="api-section">
+      <h2>Sort Sub Categories</h2>
+      <p><strong>Endpoint:</strong> GET /sortSubCategories</p>
+      <p><strong>Parameters:</strong></p>
+      <ul>
+        <li>id (optional): ID sub-kategori.</li>
+        <li>nameSubCategory (optional): Nama sub-kategori.</li>
+        <li>categoryId (optional): ID kategori.</li>
+      </ul>
+      <p><strong>Deskripsi:</strong> Mendapatkan daftar sub-kategori produk, jika tanpa parameter maka akan mengambil semua data.</p>
+    </section>
+    
+    <section class="api-section">
+      <h2>Sort Products</h2>
+      <p><strong>Endpoint:</strong> GET /sortProducts</p>
+      <p>exp : http://localhost:3000/sortProducts?name=Dress</p>
+      <p><strong>Parameters:</strong></p>
+      <ul>
+        <li>name (optional): Nama produk.</li>
+        <li>gender (optional): Gender produk(male or female).</li>
+        <li>minDiscount dan maxDiscount (optional): Rentang diskon produk.</li>
+        <li>minPrice dan maxPrice (optional): Rentang harga produk.</li>
+        <li>id (optional): ID produk.</li>
+      </ul>
+      <p><strong>Deskripsi:</strong> Mendapatkan daftar produk berdasarkan berbagai kriteria seperti nama, gender, diskon, dan harga, jika tanpa parameter maka akan mengambil semua data product.</p>
+    </section>
+    
+    <section class="api-section">
+      <h2>Get Product by ID</h2>
+      <p><strong>Endpoint:</strong> GET /sortProducts/:id</p>
+      <p><strong>Deskripsi:</strong> Mendapatkan detail produk berdasarkan ID.</p>
+    </section>
 
     <hr>
     <h4>Show Single Product</h4>
@@ -232,6 +289,7 @@
       }
       </code>
     </pre>
+
 
   </section>
 
