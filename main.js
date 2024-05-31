@@ -25,7 +25,7 @@ app.get('/' , (req, res) => {
   res.json({message: 'welcome to the api'})
 })
 
-app.get('api-docs2', (req, res) => {
+app.get('/api-docs2', (req, res) => {
   res.sendFile(__dirname + "/public/html/documentation.html");
 })
 
