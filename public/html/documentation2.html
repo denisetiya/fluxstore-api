@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.api-section {
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+}
+
+pre {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+strong {
+  color: #666;
+}
+
+</style>
+<body>
+
+  <header>
+    <h1>API Routing Guide</h1>
+  </header>
+  
+  <section class="api-section">
+    <h2>Login API</h2>
+    <p><strong>Endpoint:</strong> /api-login</p>
+    <p><strong>Method:</strong> GET</p>
+  </section>
+  
+  <section class="api-section">
+    <h2>API Documentation</h2>
+    <p><strong>Endpoint:</strong> /api-docs</p>
+    <p><strong>Method:</strong> GET</p>
+  </section>
+  
+  <section class="api-section">
+    <h2>Register User</h2>
+    <p><strong>Endpoint:</strong> /user/register</p>
+    <p><strong>Required Fields:</strong> name, email, password, confirmPassword</p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Exp body JSON:</strong> </p>
+    <pre>
+      <code>
+        {
+          "email": "admin1@gmail.com",
+          "password": "qwerty",
+          "name": "admin1",
+          "confirmPassword": "qwerty"
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="api-section">
+    <h2>Login User</h2>
+    <p><strong>Endpoint:</strong> /user/login</p>
+    <p><strong>Required Fields:</strong> email, password</p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Exp body JSON:</strong> </p>
+    <pre>
+      <code>
+        {
+          "email": "admin1@gmail.com",
+          "password": "qwerty"
+        }
+      </code>
+    </pre>
+  </section>
+
+  <section class="api-section">
+    <h2>Forget Password</h2>
+    <p><strong>Method:</strong> POST</p>
+    <p>Step Route :</p>
+    <h4>Verify Email</h4>
+    <p><strong>Required Fields:</strong> email</p>
+    <p><strong>Endpoint:</strong> /user/forgetPassword</p>
+    <h4>Verify Code</h4>
+    <p><strong>Required Fields:</strong> email, verifyCode</p>
+    <p><strong>Endpoint:</strong> /user/verifyCode</p>
+    <h4>New Password</h4>
+    <p><strong>Required Fields:</strong> email, newPassword</p>
+    <p><strong>Endpoint:</strong> /user/forgetPassword</p>
+  </section>
+
+  <section class="api-section">
+    <h2>Product Route</h2>
+    <hr>
+    <h4>Add Product</h4>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>required Fields:</strong> nameProduct, priceProduct, descProduct(optional), starProduct(optional), categoryProduct, gender(optional), rekomendedProduct(only true,  default false), detail : stockProduct, colorProduct, pictureProduct </p>
+    <p><strong>Endpoint:</strong> /product/add</p>
+    <p><strong>Example body JSON:</strong></p>
+    <pre>
+      <code>
+        {
+          "nameProduct": "Hanes Women's Perfect-T Short ",
+          "priceProduct": 19.99,
+          "descProduct": "QUALITY FABRIC - Hanes Perfect-T long-sleeve T-shirt is crafted from lightweight",
+          "starProduct": 4.2,
+          "discountProduct" : 10.2,
+          "idSubCategory" : "107",
+          "gender": "female",
+          "recommendedProduct": true,
+          "detail": [
+            {
+            
+              "color": "green",
+              "picture": "https://m.media-amazon.com/images/I/817XXDXzuGL._AC_SY550_.jpg"
+            },    {
+           
+              "color": "pink",
+              "picture": "https://m.media-amazon.com/images/I/517Bxv24wOL._AC_SX466_.jpg"
+            },    {
+           
+              "color": "gray",
+              "picture": "https://m.media-amazon.com/images/I/813X6oCL-ML._AC_SX569_.jpg"
+            },    {
+           
+              "color": "blue",
+              "picture": "https://m.media-amazon.com/images/I/61iwYEV-XWL._AC_SX466_.jpg"
+            }
+            
+          ],
+          "sizes" : [
+           {
+                "stock": 143,
+                "size" : "M"
+            },    {
+                "stock": 173,
+                "size" : "L"
+            },    {
+                "stock": 123,
+                "size" : "XL"
+            }
+          ]
+        }
+        
+      </code>
+    </pre>
+    <br>
+
+    <section class="api-section">
+      <h2>Sort Product by Category</h2>
+      <p><strong>Endpoint:</strong> GET /product/sortCategory</p>
+      <p><strong>Parameters:</strong></p>
+      <ul>
+        <li>id (optional): ID kategori.</li>
+        <li>nameCategory (optional): Nama kategori.</li>
+      </ul>
+      <p><strong>Deskripsi:</strong> Mendapatkan daftar produk yang termasuk dalam kategori tertentu, jika tanpa parameter maka akan mengambil semua data.</p>
+    </section>
+    
+    <section class="api-section">
+      <h2>Sort Sub Categories</h2>
+      <p><strong>Endpoint:</strong> GET /product/sortSubCategory</p>
+      <p><strong>Parameters:</strong></p>
+      <ul>
+        <li>id (optional): ID sub-kategori.</li>
+        <li>nameSubCategory (optional): Nama sub-kategori.</li>
+        <li>categoryId (optional): ID kategori.</li>
+      </ul>
+      <p><strong>Deskripsi:</strong> Mendapatkan daftar sub-kategori produk, jika tanpa parameter maka akan mengambil semua data.</p>
+    </section>
+    
+    <section class="api-section">
+      <h2>Sort Products</h2>
+      <p><strong>Endpoint:</strong> GET /product/sortProduct</p>
+      <p>exp : http://localhost:3000/sortProducts?name=Dress</p>
+      <p><strong>Parameters:</strong></p>
+      <ul>
+        <li>name (optional): Nama produk.</li>
+        <li>gender (optional): Gender produk(male or female).</li>
+        <li>minDiscount dan maxDiscount (optional): Rentang diskon produk.</li>
+        <li>minPrice dan maxPrice (optional): Rentang harga produk.</li>
+        <li>id (optional): ID produk.</li>
+      </ul>
+      <p><strong>Deskripsi:</strong> Mendapatkan daftar produk berdasarkan berbagai kriteria seperti nama, gender, diskon, dan harga, jika tanpa parameter maka akan mengambil semua data product.</p>
+    </section>
+    
+    <section class="api-section">
+      <h2>Get Product by ID</h2>
+      <p><strong>Endpoint:</strong> GET /sortProducts/:id</p>
+      <p><strong>Deskripsi:</strong> Mendapatkan detail produk berdasarkan ID.</p>
+    </section>
+
+    <hr>
+    <h4>Show Single Product</h4>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>Endpoint:</strong> /product/show/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/show/123131kaljdakadj</p>
+
+    <hr>
+    <h4>Delete Product</h4>
+    <p><strong>Method:</strong> DELETE</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>Endpoint:</strong> /product/delete/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/delete/123131kaljdakadj</p>
+
+    <hr>
+    <h4>Delete Detail Product</h4>
+    <p><strong>Method:</strong> DELETE</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>Endpoint:</strong> /product/deleteDetail/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/deleteDetail/123131kaljdakadj</p>
+
+
+    <hr>
+    <h4>Update Product</h4>
+    <p><strong>Method:</strong> PUT</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>required Fields body:</strong> nameProduct, priceProduct, descProduct(optional), starProduct(optional), categoryProduct, gender(optional), rekomendedProduct(only true,  default false)</p>
+    <p><strong>Endpoint:</strong> /product/update/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/updateDetail/123131kaljdakadj</p>
+    <p><strong>Example body JSON:</strong></p>
+    <pre>
+      <code>
+        {
+          "nameProduct": "iphone 12",
+          "priceProduct": "25000000",
+          "starProduct": "4",
+          "categoryProduct": "electronic",
+          "gender": "uni",
+          "rekomendedProduct": true
+        }
+      </code>
+    </pre>
+
+    <hr>
+    <h4>Update Detail Product</h4>
+    <p><strong>Method:</strong> PUT</p>
+    <p><strong>required Fields param:</strong> id</p>
+    <p><strong>required Fields body:</strong> id(id detail product), stockProduct, colorProduct, pictureProduct</p>
+    <p><strong>Endpoint:</strong> /product/updateDetail/:id</p>
+    <p><strong>exp param :</strong> http://localhost:3000/product/updateDetail/123131kaljdakadj</p>
+    <p><strong>Example body JSON:</strong></p>
+    <pre>
+      <code>
+        {
+          "nameProduct": "product 2",
+          "productDetail": [
+              {
+                  "id": "clv6nj3q400021sqm1wbgg7h5",
+                  "stockProduct": "15"
+              },
+              {
+                  "id": "clv6nj3rz00041sqmdvhib823",
+                  "stockProduct": "5"
+              }
+          ]
+      }
+      </code>
+    </pre>
+
+
+  </section>
+
+</body>
+</html>
