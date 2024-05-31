@@ -1,5 +1,3 @@
-// create db fluxstore
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,45 +9,82 @@ datasource db {
 
 // add user table part
 
-model User  {
-  id String @id @default(cuid())
-  name String
-  email String @unique
-  password String
-  address String?
+model User {
+  id          String  @id @default(cuid())
+  name        String
+  email       String  @unique
+  password    String
   phoneNumber String?
-  profilePic String?
-  superUser Boolean @default(false)
-  alamat Alamat?
+  profilePic  String?
+  superUser   Boolean @default(false)
+  alamat      Alamat?
+  comentsUser comentsProduct[]
 }
 
 model Alamat {
-  idUser String @id @unique 
-  provisi String
+  id        String @id @default(cuid())
+  idUser    String @unique
+  provinsi  String
   kabupaten String
   kecamatan String
-  kodepos String
-  detail String
-  user User @relation(fields: [idUser], references: [id])
+  kodepos   String
+  detail    String
+  user      User @relation(fields: [idUser], references: [id], onDelete: Cascade)
 }
 
-model product {
-  id String @id @default(cuid())
-  nameProduct String
-  priceProduct String
-  descProduct String?
-  starProduct String?
-  categoryProduct String
-  gender String?
-  productDetail productDetail[]
-  rekomendedProduct Boolean @default(false)
+model CategoryProduct {
+  id          String @id 
+  nameCategory String
+  subCategories SubCategoryProduct[]
 }
 
-model productDetail {
-  id String @id @default(cuid())
-  idProduct String 
-  stockProduct String
-  colorProduct String
+model SubCategoryProduct {
+  id              String @id 
+  nameSubCategory String
+  idCategory      String
+  products        Product[]
+  categoryProduct CategoryProduct @relation(fields: [idCategory], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id                 String           @id @default(cuid())
+  idSubCategory      String
+  nameProduct        String
+  priceProduct       Float
+  descProduct        String?
+  discountProduct    Float?
+  starProduct        Float?
+  gender             String?
+  comentsProduct     comentsProduct[]
+  productDetails     ProductDetail[]
+  recommendedProduct Boolean          @default(false)
+  subCategory        SubCategoryProduct @relation(fields: [idSubCategory], references: [id], onDelete: Cascade)
+}
+
+model ProductDetail {
+  id             String       @id @default(cuid())
+  idProduct      String
+  colorProduct   String
   pictureProduct String
-  product product @relation(fields: [idProduct], references: [id])
+  sizes          Size[]
+  product        Product @relation(fields: [idProduct], references: [id], onDelete: Cascade)
+}
+
+model Size {
+  id             String        @id @default(cuid())
+  idProductDetail String
+  sizeProduct    String
+  stockProduct   Int
+  productDetail  ProductDetail @relation(fields: [idProductDetail], references: [id], onDelete: Cascade)
+}
+
+model comentsProduct {
+  id        String @id @default(cuid())
+  idProduct String
+  idUser    String
+  comment   String
+  rating    Float
+  created_at DateTime @default(now())
+  user      User @relation(fields: [idUser], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [idProduct], references: [id], onDelete: Cascade)
 }

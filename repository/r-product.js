@@ -1,15 +1,16 @@
 const prisma = require("../utils/prisma.js")
 
 const getAllProduct = async () => {
-
   return await prisma.product.findMany({
     include: {
-      productDetail: true
+      productDetails: {
+        include: {
+          sizes: true
+        }
+      }
     }
   });
-
-
-}
+};
 
 
 const getProductById = async (id) => {
@@ -19,44 +20,70 @@ const getProductById = async (id) => {
       id
     },
     include: {
-      productDetail: true
+      productDetails: {
+        include: {
+          sizes: true
+        }
+      }
     }
   });
 
 }
 
 const createProduct = async (data) => {
-  
-  const { nameProduct,priceProduct,descProduct,starProduct,categoryProduct,gender,rekomendedProduct,detail } = data;
+  const { nameProduct, priceProduct, descProduct, starProduct, idSubCategory, discountProduct, gender, recommendedProduct,comments, detail,sizes} = data;
 
+  // Buat Product baru
   const newProduct = await prisma.product.create({
     data: {
       nameProduct,
       priceProduct,
       descProduct,
       starProduct,
-      categoryProduct,
+      discountProduct,
+      idSubCategory,
       gender,
-      rekomendedProduct
+      recommendedProduct
     }
   });
 
   const productId = newProduct.id;
 
+
   for (let item of detail) {
-    await prisma.productDetail.create({
+    const newProductDetail = await prisma.productDetail.create({
       data: {
         idProduct: productId,
-        stockProduct: item.stock,
         colorProduct: item.color,
         pictureProduct: item.picture
       }
     });
+
+    for (let size of sizes) {
+      await prisma.size.create({
+        data: {
+          idProductDetail: newProductDetail.id,
+          sizeProduct: size.size,
+          stockProduct: size.stock
+        }
+      });
+    }
   }
 
-  return newProduct;
+  // for (let comment of comments) {
+  //   await prisma.comment.create({
+  //     data: {
+  //       idProduct: productId,
+  //       idUser: comment.idUser,
+  //       rating : comment.rating,
+  //       comment: comment.comment
+  //     }
+  //   });
+  // }
 
+  return newProduct;
 }
+
 
 
 
