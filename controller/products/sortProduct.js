@@ -85,9 +85,12 @@ sortProducts.get("/", async (req, res) => {
       minPrice,
       maxPrice,
     });
-    res.json(products);
+    if (!products) {
+      return response(404, "Product not found", res);
+    }
+    return response(200, "Success", res, products);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return response(500, error.message, res);
   }
 });
 
@@ -95,9 +98,12 @@ sortProducts.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const product = await getProducts(id);
-    res.json(product);
+    if (!product) {
+      return response(404, "Product not found", res);
+    }
+    return response(200, "Success", res, product);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return response(500, error.message, res);
   }
 });
 module.exports = { sortProductCategory, sortSubCategories, sortProducts };
