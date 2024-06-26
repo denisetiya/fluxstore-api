@@ -18,7 +18,7 @@ login.post("/", async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    return response(200, "Login success", res, user);
+    return response(200, "Login success", res, null);
 
   } catch (error) {
 

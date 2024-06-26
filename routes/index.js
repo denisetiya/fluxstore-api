@@ -33,13 +33,13 @@ router.use("/user/forgetPassword", forgetPasswordRouter);
 
 // product route
 router.use("/product/add", addProductRoute);
-router.use("/product/show", showProductRoute);
+// router.use("/product/show", showProductRoute);
 router.use("/product/delete", deleteProductRoute);
 router.use("/product/deleteDetail", deleteProductDetailRoute);
 router.use("/product/update", updateProductRoute);
-router.use("/product/sortProduct", sortProducts);
-router.use("/product/sortCategory", sortProductCategory);
-router.use("/product/sortSubCategory", sortSubCategories);
+router.use("/product/show", sortProducts);
+router.use("/product/category", sortProductCategory);
+router.use("/product/subCategory", sortSubCategories);
 
 
 module.exports = router

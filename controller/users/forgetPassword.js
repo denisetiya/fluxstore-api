@@ -45,9 +45,9 @@ verificationEmailRouter.post("/", async (req, res) => {
 })
 
 verificationCodeRouter.post("/", async (req, res) => {
-  
+  console.log(req.cookie)
   const {code} = req.body;
-  const verifyCode = req.cookies.verifyCode;
+  const verifyCode = req.cookies ? req.cookies.verifyCode : null
 
   try {
 
@@ -83,7 +83,7 @@ forgetPasswordRouter.put("/", async (req, res) => {
 
       }
   
-      return response(200, "Update password success", res, result);
+      return response(200, "Update password success", res);
 
     } catch (error) {
     
